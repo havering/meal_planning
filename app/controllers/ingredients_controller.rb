@@ -1,5 +1,6 @@
 class IngredientsController < ApplicationController
   before_action :set_ingredient, only: [:show, :edit, :update, :destroy]
+  before_action :set_recipe, except: [:show]
 
   # GET /ingredients
   # GET /ingredients.json
@@ -24,11 +25,12 @@ class IngredientsController < ApplicationController
   # POST /ingredients
   # POST /ingredients.json
   def create
-    @ingredient = Ingredient.new(ingredient_params)
+    @ingredient = @recipe.ingredients.new(ingredient_params)
+
 
     respond_to do |format|
       if @ingredient.save
-        format.html { redirect_to @ingredient, notice: 'Ingredient was successfully created.' }
+        format.html { redirect_to @recipe, notice: 'Ingredient was successfully created.' }
         format.json { render :show, status: :created, location: @ingredient }
       else
         format.html { render :new }
@@ -66,6 +68,10 @@ class IngredientsController < ApplicationController
     def set_ingredient
       @ingredient = Ingredient.find(params[:id])
     end
+
+  def set_recipe
+    @recipe = Recipe.find(params[:recipe_id])
+  end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def ingredient_params

@@ -1,4 +1,4 @@
-<%= form_for(ingredient) do |f| %>
+<%= form_for([@recipe, ingredient]) do |f| %>
   <% if ingredient.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(ingredient.errors.count, "error") %> prohibited this ingredient from being saved:</h2>
@@ -22,13 +22,10 @@
   </div>
 
   <div class="field">
-    <%= f.label :num_quant %>
+    <%= f.label :quantity %>
     <%= f.number_field :num_quant %>
-  </div>
 
-  <div class="field">
-    <%= f.label :name_quant %>
-    <%= f.text_field :name_quant %>
+    <%= f.select :name_quant, ['teaspoon', 'teaspoons', 'Tablespoon', 'Tablespoons', 'cup', 'cups', 'gram', 'grams', 'ounce', 'ounces', 'pound', 'pounds', 'whole'] %>
   </div>
 
   <div class="actions">
