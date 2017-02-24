@@ -1,0 +1,9 @@
+@import "bootstrap";
+
+$font-stack: Helvetica, sans-serif;
+
+body {
+  margin-left: 20px;
+  margin-right: 20px;
+  font: $font-stack;
+}

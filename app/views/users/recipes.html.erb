@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Recipes</h1>
+<h1><%= @user.name %>'s Recipes</h1>
 
 <table class="table table-striped">
   <thead>
@@ -17,8 +17,7 @@
   </thead>
 
   <tbody>
-  <% @recipes.each do |recipe| %>
-    <% if recipe.shared %>
+  <% @user_recipes.each do |recipe| %>
       <tr>
         <td><%= link_to recipe.name, recipe %></td>
         <td><%= recipe.prep_time %></td>
@@ -30,7 +29,6 @@
         <td><%= link_to 'Edit', edit_recipe_path(recipe) %></td>
         <td><%= link_to 'Destroy', recipe, method: :delete, data: {confirm: 'Are you sure?'} %></td>
       </tr>
-    <% end %>
   <% end %>
   </tbody>
 </table>
