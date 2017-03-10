@@ -19,6 +19,7 @@ class RecipesController < ApplicationController
 
   # GET /recipes/1/edit
   def edit
+    redirect_to recipes_path unless current_user.id == @recipe.user.id
   end
 
   # POST /recipes
