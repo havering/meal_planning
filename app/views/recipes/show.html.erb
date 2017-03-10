@@ -25,27 +25,46 @@
   <%= @recipe.cook_type %>
 </p>
 
-<p>
-  <strong>Instructions:</strong>
-  <%= @recipe.instructions %>
-</p>
+<% if current_user.id == @recipe.user.id %>
+  <p>
+    <strong>Shared:</strong>
+    <% if @recipe.shared %>
+      Public recipe
+    <% else %>
+      Private recipe
+    <% end %>
+  </p>
+<% end %>
+<div id="ing_inst_block">
 
-<p>
-  <strong>Shared:</strong>
-  <%= @recipe.shared %>
-</p>
+  <div style="float: left; width: 50%">
+    <p>
+      <strong>Ingredients:</strong>
+      <br/>
+      <% @recipe.ingredients.each do |ing| %>
+        <br/><%= link_to ing.name, ingredient_path(ing) %> - <%= ing.num_quant %> <%= ing.name_quant %>
+      <% end %>
+    </p>
 
-<p>
-  <strong>Ingredients:</strong>
-  <br/>
-  <% @recipe.ingredients.each do |ing| %>
-    <br/><%= link_to ing.name, ingredient_path(ing) %>
-  <% end %>
-</p>
+    <% if @recipe.user.id == current_user.id %>
+    <p>
+      <%= button_to 'Add Ingredient', new_recipe_ingredient_path(@recipe), :method => :get %>
+    </p>
+      <% end %>
+  </div>
+  <div style="float: right; width: 50%">
+    <p>
+      <strong>Instructions:</strong>
+      <br/>
+      <br/>
+      <%= @recipe.instructions %>
+    </p>
+  </div>
+</div>
 
-<p>
-  <%= button_to 'Add Ingredient', new_recipe_ingredient_path(@recipe), :method => :get %>
-</p>
-
-<%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<div style="margin-top: 20vh">
+<% if @recipe.user.id == current_user.id %>
+  <%= link_to 'Edit', edit_recipe_path(@recipe) %> |
+<% end %>
 <%= link_to 'Back', recipes_path %>
+</div>

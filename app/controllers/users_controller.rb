@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :recipes]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :recipes, :calendar]
 
   # GET /users
   # GET /users.json
@@ -69,6 +69,13 @@ class UsersController < ApplicationController
 
   def recipes
     @user_recipes = @user.recipes
+  end
+
+  # GET /users/1/calendar
+  def calendar
+    redirect_to root_path unless current_user.id == @user.id
+
+    @meals = @user.meals
   end
 
   private

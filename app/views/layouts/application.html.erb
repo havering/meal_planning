@@ -11,6 +11,7 @@
   <body>
   <ul class="hmenu">
     <%= link_to 'Home', root_path %> -
+    <%= link_to 'My Calendar', calendar_path(current_user) %> -
     <%= render 'devise/registration_items' %> -
     <%= render 'devise/login_items' %>
   </ul>
