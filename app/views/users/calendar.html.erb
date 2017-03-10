@@ -1,8 +1,11 @@
 <%= week_calendar events: @meals do |date, meals| %>
-  <%= date %>
+  <%= date.strftime("%B  %-d, %Y") %>
   <% meals.each do |meal| %>
     <div>
+      <br/>
       <%= link_to meal.recipe.name, recipe_path(meal.recipe) %>
+      <br/>
+      <br/>
     </div>
   <% end %>
 <% end %>
