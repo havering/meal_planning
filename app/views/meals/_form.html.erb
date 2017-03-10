@@ -1,0 +1,29 @@
+<%= form_for(meal) do |f| %>
+  <% if meal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(meal.errors.count, "error") %> prohibited this meal from being saved:</h2>
+
+      <ul>
+      <% meal.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :recipe_id %>
+    <%= f.collection_select :recipe_id, shared_and_owned, :id, :name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :date %>
+    <%= f.date_select :start_time, order: [:month, :day, :year] %>
+  </div>
+
+  <%= f.hidden_field :user_id, :value => current_user.id %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

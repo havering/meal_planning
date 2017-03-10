@@ -2,7 +2,7 @@
   <%= date %>
   <% meals.each do |meal| %>
     <div>
-      <%= meal.name %>
+      <%= link_to meal.recipe.name, recipe_path(meal.recipe) %>
     </div>
   <% end %>
 <% end %>
