@@ -3,12 +3,10 @@
   <% meals.each do |meal| %>
     <div>
       <br/>
-      <%= link_to meal.recipe.name, recipe_path(meal.recipe) %>
+      <%= link_to meal.recipe.name, recipe_path(meal.recipe) %> <%= link_to "-", meal_path(meal), data: { :confirm => "Delete meal from calendar?"}, :method => :delete, class: "btn btn-danger" %>
       <br/>
       <br/>
     </div>
-
-    <% puts meal.recipe.present? %>
   <% end %>
 
   <% if meals.empty? %>
