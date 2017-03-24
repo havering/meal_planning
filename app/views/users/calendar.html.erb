@@ -1,4 +1,4 @@
-<%= week_calendar events: @meals do |date, meals| %>
+<%= month_calendar events: @meals do |date, meals| %>
   <%= date.strftime("%B  %-d, %Y") %>
   <% meals.each do |meal| %>
     <div>
@@ -7,5 +7,11 @@
       <br/>
       <br/>
     </div>
+
+    <% puts meal.recipe.present? %>
+  <% end %>
+
+  <% if meals.empty? %>
+    <p><%= link_to "+", new_meal_path(:start_time => date), class: "btn btn-info" %></p>
   <% end %>
 <% end %>

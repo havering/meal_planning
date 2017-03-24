@@ -18,7 +18,7 @@
 
   <div class="field">
     <%= f.label :date %>
-    <%= f.date_select :start_time, order: [:month, :day, :year] %>
+    <%= f.date_select :start_time, order: [:month, :day, :year], default: @date %>
   </div>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>

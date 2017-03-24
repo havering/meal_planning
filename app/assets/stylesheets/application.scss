@@ -17,3 +17,31 @@ ul.hmenu {
 ul.hmenu li {
   display: inline;
 }
+
+.simple-calendar {
+  .day {
+    height: 150px;
+    width: 14.28%;
+    border: 1px solid grey;
+  }
+
+  .wday-0 {}
+  .wday-1 {}
+  .wday-2 {}
+  .wday-3 {}
+  .wday-4 {}
+  .wday-5 {}
+  .wday-6 {}
+
+  .today {}
+  .past {}
+  .future {}
+
+  .start-date {}
+
+  .prev-month {}
+  .next-month { }
+  .current-month {}
+
+  .has-events {}
+}

@@ -14,6 +14,7 @@ class MealsController < ApplicationController
 
   # GET /meals/new
   def new
+    @date = Date.parse(params[:start_time])
     @meal = Meal.new
   end
 
