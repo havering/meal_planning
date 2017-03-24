@@ -75,7 +75,7 @@ class UsersController < ApplicationController
   def calendar
     redirect_to root_path unless current_user.id == @user.id
 
-
+    @meals = @user.meals
   end
 
   private
