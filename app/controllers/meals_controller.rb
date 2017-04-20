@@ -14,7 +14,12 @@ class MealsController < ApplicationController
 
   # GET /meals/new
   def new
-    @date = Date.parse(params[:start_time])
+    if params[:start_time]
+      @date = Date.parse(params[:start_time])
+    else
+      @date = Date.today
+    end
+
     @meal = Meal.new
   end
 
@@ -63,13 +68,13 @@ class MealsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_meal
-      @meal = Meal.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_meal
+    @meal = Meal.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def meal_params
-      params.require(:meal).permit(:recipe_id, :start_time, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def meal_params
+    params.require(:meal).permit(:recipe_id, :start_time, :user_id)
+  end
 end
