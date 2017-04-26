@@ -16,3 +16,11 @@
 //= require turbolinks
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).ready(function () {
+  // add ingredients to DB dynamically instead of this form crap
+  function addIngredient(ing) {
+    console.log("Ing contains:" + ing);
+  }
+
+});

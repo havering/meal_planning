@@ -1,3 +1,20 @@
+<script type="application/javascript">
+  $(document).ready(function () {
+    $('#hidden_form').hide();
+  });
+
+  function revealForm() {
+      $('#hidden_form').show();
+      $('#startAdd').hide();
+    }
+
+  function hideForm() {
+      event.preventDefault();
+      $('#hidden_form').hide();
+      $('#startAdd').show();
+    }
+</script>
+
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -39,7 +56,8 @@
 
     <% if @recipe.user.id == current_user.id %>
     <p>
-      <%= button_to 'Add Ingredient', new_recipe_ingredient_path(@recipe), :method => :get %>
+      <% button_to 'Add Ingredient', new_recipe_ingredient_path(@recipe), :method => :get %>
+      <button id="startAdd" onclick="revealForm()">Add Ingredient</button>
     </p>
       <% end %>
   </div>
@@ -51,6 +69,10 @@
       <%= simple_format(@recipe.instructions) %>
     </p>
   </div>
+</div>
+
+<div id="hidden_form">
+  <%= render 'ingredients/form', ingredient: Ingredient.new %>
 </div>
 
 <div style="margin-top: 20vh">
